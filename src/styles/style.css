@@ -1,6 +1,8 @@
+@import "./dongle.css";
+
 * {
     box-sizing: border-box;
-    font-family: 'Dongle', sans-serif;
+    font-family: 'Dongle';
     font-weight: normal;
 }
 
@@ -10,11 +12,18 @@ body {
 }
 
 .app-wrapper {
-    margin-top: 100px;
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+}
+
+.calculator {
+    display: grid;
+    /*justify-content: center;*/
+    /*align-items: center;*/
     grid-template-columns: repeat(8, 100px);
+    padding: 0 110px 160px 0;
 }
 
 .display {
