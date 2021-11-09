@@ -26,11 +26,21 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                ],
             },
             {
-                test: /\.(ttf)$/,
-                use: ['url-loader']
+                test: /\.ttf(\?\S*)?$/,
+                use: 'url-loader?limit=10000',
             },
         ]
     }

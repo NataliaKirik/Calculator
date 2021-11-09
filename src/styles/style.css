@@ -2,7 +2,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Dongle';
+    font-family: 'Dongle', sans-serif;
     font-weight: normal;
 }
 
@@ -20,8 +20,6 @@ body {
 
 .calculator {
     display: grid;
-    /*justify-content: center;*/
-    /*align-items: center;*/
     grid-template-columns: repeat(8, 100px);
     padding: 0 110px 160px 0;
 }
@@ -45,9 +43,14 @@ body {
     grid-column: span 3;
 }
 
-.previous-operand, .current-operand, .memory {
+.current-operand, .memory {
     color: white;
     font-size: 35px;
+}
+
+.previous-operation {
+    color: #c2bfbf;
+    font-size: 25px;
 }
 
 
