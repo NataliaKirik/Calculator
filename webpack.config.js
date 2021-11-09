@@ -40,7 +40,7 @@ module.exports = {
             },
             {
                 test: /\.ttf(\?\S*)?$/,
-                use: 'url-loader?limit=10000',
+                use: 'url-loader',
             },
         ]
     }
