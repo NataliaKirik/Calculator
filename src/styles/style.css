@@ -43,12 +43,12 @@ body {
     grid-column: span 3;
 }
 
-.current-operand, .memory {
+.current-operand {
     color: white;
     font-size: 35px;
 }
 
-.previous-operation {
+.previous-operation, .memory {
     color: #c2bfbf;
     font-size: 25px;
 }

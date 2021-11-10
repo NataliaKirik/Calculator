@@ -1,7 +1,8 @@
 export class Calculator {
-    constructor(previousOperationElement, currentOperandTextElement) {
+    constructor(previousOperationElement, currentOperandTextElement, memoryElement) {
         this.previousOperationElement = previousOperationElement
         this.currentOperandTextElement = currentOperandTextElement
+        this.memoryElement = memoryElement
         this.clearAll()
     }
 
@@ -16,41 +17,50 @@ export class Calculator {
         }
     }
 
-    chooseOperation(operation, isSingleOperation) {
+    chooseOperation(operation, isSingleOperation, memoryOperation) {
         if (this.currentOperand === '') return
         if (!isSingleOperation) {
             if (this.previousOperand !== '') {
                 this.calculateOperations()
             }
-            //add current operand to memory
+            //add current operand to second display's block
             this.previousOperand = this.currentOperand
+
+            this.currentOperand = ''
+        }
+        if (memoryOperation) {
+            if (this.memory !== '') {
+                this.memoryOperations()
+            }
+            this.memory = this.currentOperand
             this.currentOperand = ''
         }
         this.operation = operation
+        this.memoryOperation = memoryOperation
         this.isSingleOperation = isSingleOperation
     }
 
     calculateOperations() {
         let result = this.currentOperand
-        const prev = parseFloat(this.previousOperand)
-        const current = parseFloat(this.currentOperand)
+        const previousBlock = parseFloat(this.previousOperand)
+        const currentBlock = parseFloat(this.currentOperand)
         if (!this.isSingleOperation) {
-            if (isNaN(prev) || isNaN(current)) return
+            if (isNaN(previousBlock) || isNaN(currentBlock)) return
             switch (this.operation) {
                 case '+':
-                    result = prev + current
+                    result = previousBlock + currentBlock
                     break
                 case '-':
-                    result = prev - current
+                    result = previousBlock - currentBlock
                     break
                 case '*':
-                    result = prev * current
+                    result = previousBlock * currentBlock
                     break
                 case '÷':
-                    result = prev / current
+                    result = previousBlock / currentBlock
                     break
                 case '%':
-                    result = prev % current
+                    result = previousBlock % currentBlock
                     break
                 default:
                     return
@@ -58,28 +68,28 @@ export class Calculator {
             this.previousOperand = ''
         }
         if (this.isSingleOperation && this.operation) {
-            if (isNaN(current)) return
+            if (isNaN(currentBlock)) return
             switch (this.operation) {
                 case 'x²':
-                    result = current ** 2
+                    result = currentBlock ** 2
                     break
                 case 'x³':
-                    result = current ** 3
+                    result = currentBlock ** 3
                     break
                 case '1/x':
-                    result = 1 / current
+                    result = 1 / currentBlock
                     break
                 case '√x':
-                    result = Math.sqrt(current)
+                    result = Math.sqrt(currentBlock)
                     break
                 case '∛x':
-                    result = Math.cbrt(current)
+                    result = Math.cbrt(currentBlock)
                     break
                 case 'log':
-                    result = Math.log(current)
+                    result = Math.log(currentBlock)
                     break
                 case 'log10':
-                    result = Math.log10(current)
+                    result = Math.log10(currentBlock)
                     break
                 default:
                     break
@@ -89,9 +99,36 @@ export class Calculator {
         this.operation = undefined
     }
 
+    memoryOperations() {
+        let memoryResult = this.currentOperand
+        let memoryBlock = this.currentOperand
+        const currentBlock = parseFloat(this.currentOperand)
+        if (isNaN(memoryBlock) || isNaN(currentBlock)) return
+        switch (this.memoryOperation) {
+            case 'M+':
+                memoryResult = memoryBlock + currentBlock
+                break
+            case 'M-':
+
+                break
+            case 'MR':
+
+                break
+            case 'MC':
+
+                break
+            default:
+                return
+        }
+        this.currentOperand = ''
+        this.memory = memoryResult
+        this.operation = undefined
+    }
+
     clearAll() {
         this.currentOperand = ''
         this.previousOperand = ''
+        this.memory = ''
         this.operation = undefined
     }
 
@@ -100,13 +137,16 @@ export class Calculator {
     }
 
     displayData() {
-        this.currentOperandTextElement.innerText =
-            this.currentOperand
+        this.currentOperandTextElement.innerText = this.currentOperand
         if (this.operation) {
-            this.previousOperationElement.innerText =
-                `${this.previousOperand} ${this.operation}`
+            this.previousOperationElement.innerText = `${this.previousOperand} ${this.operation}`
         } else {
             this.previousOperationElement.innerText = ''
+        }
+        if (this.memoryOperation) {
+            this.memoryElement.innerText = this.memory
+        } else {
+            this.memoryElement.innerText = ''
         }
     }
 }

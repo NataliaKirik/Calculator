@@ -5,10 +5,9 @@ const calculatorElement = document.querySelector('[data-calculator]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 const previousOperationElement = document.querySelector('[data-previous-operation]')
 const memoryElement = document.querySelector('[data-memory]')
-const memoryButtons = document.querySelector('[data-memory-operation]')
 
 
-const calculator = new Calculator(previousOperationElement, currentOperandTextElement)
+const calculator = new Calculator(previousOperationElement, currentOperandTextElement, memoryElement)
 
 calculatorElement.addEventListener('click', (event) => {
     if (event.target.dataset.number === '') {
@@ -28,6 +27,9 @@ calculatorElement.addEventListener('click', (event) => {
     }
     if (event.target.dataset.clearAll === '') {
         calculator.clearAll()
+    }
+    if (event.target.dataset.memoryOperation === '') {
+        calculator.chooseOperation(false, true, event.target.innerText)
     }
     calculator.displayData()
 })
