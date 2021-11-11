@@ -29,7 +29,7 @@ calculatorElement.addEventListener('click', (event) => {
         calculator.clearAll()
     }
     if (event.target.dataset.memoryOperation === '') {
-        calculator.chooseOperation(false, true, event.target.innerText)
+        calculator.chooseMemoryOperation(event.target.innerText)
     }
     calculator.displayData()
 })

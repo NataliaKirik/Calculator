@@ -17,7 +17,7 @@ export class Calculator {
         }
     }
 
-    chooseOperation(operation, isSingleOperation, memoryOperation) {
+    chooseOperation(operation, isSingleOperation) {
         if (this.currentOperand === '') return
         if (!isSingleOperation) {
             if (this.previousOperand !== '') {
@@ -25,19 +25,21 @@ export class Calculator {
             }
             //add current operand to second display's block
             this.previousOperand = this.currentOperand
-
-            this.currentOperand = ''
-        }
-        if (memoryOperation) {
-            if (this.memory !== '') {
-                this.memoryOperations()
-            }
-            this.memory = this.currentOperand
             this.currentOperand = ''
         }
         this.operation = operation
-        this.memoryOperation = memoryOperation
         this.isSingleOperation = isSingleOperation
+    }
+
+    chooseMemoryOperation(memoryOperation) {
+        if (memoryOperation) {
+            if (this.memory) {
+                this.memoryOperations()
+            } else {
+                this.memory = this.currentOperand
+            }
+        }
+        this.memoryOperation = memoryOperation
     }
 
     calculateOperations() {
@@ -100,8 +102,8 @@ export class Calculator {
     }
 
     memoryOperations() {
-        let memoryResult = this.currentOperand
-        let memoryBlock = this.currentOperand
+        let memoryResult = this.memory
+        let memoryBlock = parseFloat(this.memory)
         const currentBlock = parseFloat(this.currentOperand)
         if (isNaN(memoryBlock) || isNaN(currentBlock)) return
         switch (this.memoryOperation) {
@@ -120,9 +122,7 @@ export class Calculator {
             default:
                 return
         }
-        this.currentOperand = ''
         this.memory = memoryResult
-        this.operation = undefined
     }
 
     clearAll() {
