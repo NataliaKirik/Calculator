@@ -13,7 +13,7 @@ calculatorElement.addEventListener('click', (event) => {
     if (event.target.dataset.number === '') {
         calculator.appendNumber(event.target.innerText)
     }
-    if (event.target.dataset.simpleOperation === '') {
+    if (event.target.dataset.twooperandOperation === '') {
         calculator.chooseOperation(event.target.innerText, false)
     }
     if (event.target.dataset.operation === '') {
@@ -30,6 +30,9 @@ calculatorElement.addEventListener('click', (event) => {
     }
     if (event.target.dataset.memoryOperation === '') {
         calculator.chooseMemoryOperation(event.target.innerText)
+    }
+    if (event.target.dataset.changeSign === '') {
+        calculator.changeOperandSign()
     }
     calculator.displayData()
 })

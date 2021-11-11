@@ -65,6 +65,12 @@ export class Calculator {
                 case '%':
                     result = previousBlock % currentBlock
                     break
+                case 'xʸ':
+                    result = Math.pow(previousBlock, currentBlock)
+                    break
+                case 'ʸ√x':
+                    result = Math.pow(currentBlock, 1 / previousBlock)
+                    break
                 default:
                     return
             }
@@ -129,6 +135,15 @@ export class Calculator {
         }
         this.memory = memoryResult
         this.memoryOperation = undefined
+    }
+
+    changeOperandSign() {
+        this.currentOperand = this.currentOperand.toString();
+        if (this.currentOperand.includes('-')) {
+            this.currentOperand = this.currentOperand.slice(1);
+        } else {
+            this.currentOperand = '-' + this.currentOperand;
+        }
     }
 
     clearAll() {
