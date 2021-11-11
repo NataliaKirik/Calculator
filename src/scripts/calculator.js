@@ -32,13 +32,14 @@ export class Calculator {
     }
 
     chooseMemoryOperation(memoryOperation) {
-        if (memoryOperation) {
-            if (this.memory) {
-                this.memoryOperations()
-            } else {
-                this.memory = this.currentOperand
-            }
+        if (this.currentOperand === '') return
+        if (this.memory !== '' || memoryOperation === 'MC' || memoryOperation === 'MR') {
+            this.memoryOperation = memoryOperation
+            this.memoryOperations()
+        } else {
+            this.memory = this.currentOperand
         }
+
         this.memoryOperation = memoryOperation
     }
 
@@ -105,24 +106,29 @@ export class Calculator {
         let memoryResult = this.memory
         let memoryBlock = parseFloat(this.memory)
         const currentBlock = parseFloat(this.currentOperand)
-        if (isNaN(memoryBlock) || isNaN(currentBlock)) return
+        if (isNaN(currentBlock)) return
         switch (this.memoryOperation) {
             case 'M+':
                 memoryResult = memoryBlock + currentBlock
                 break
             case 'M-':
-
+                memoryResult = memoryBlock - currentBlock
                 break
             case 'MR':
-
+                if (this.memory === '' || isNaN(this.memory)) {
+                    memoryResult = ''
+                } else {
+                    this.currentOperand = memoryResult
+                }
                 break
             case 'MC':
-
+                memoryResult = ''
                 break
             default:
                 return
         }
         this.memory = memoryResult
+        this.memoryOperation = undefined
     }
 
     clearAll() {
