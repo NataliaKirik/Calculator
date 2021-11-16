@@ -2,6 +2,8 @@ import '../styles/style.css'
 import {Calculator} from "./calculator";
 import {AppendNumberCommand} from "./commands/AppendNumberCommand";
 import {CalculateOperations} from "./commands/CalculateOperationsCommand";
+import {DeleteCommand} from "./commands/DeleteCommand";
+import {ChangeOperandSignCommand} from "./commands/ChangeOperandSignCommand";
 
 const calculatorElement = document.querySelector('[data-calculator]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
@@ -13,19 +15,19 @@ const calculator = new Calculator(previousOperationElement, currentOperandTextEl
 
 calculatorElement.addEventListener('click', (event) => {
     if (event.target.dataset.number === '') {
-        calculator.executeCommand(new AppendNumberCommand(event.target.innerText))
+        calculator.executeCommandWithOneOperand(new AppendNumberCommand(event.target.innerText))
     }
     if (event.target.dataset.twooperandOperation === '') {
-        calculator.chooseOperation(event.target.innerText, false)
+        calculator.chooseOperation(event.target.innerText)
     }
     if (event.target.dataset.operation === '') {
-        calculator.executeCommand(new CalculateOperations(event.target.innerText))
+        calculator.executeCommandWithOneOperand(new CalculateOperations(event.target.innerText))
     }
     if (event.target.dataset.equal === '') {
         calculator.calculateOperations()
     }
     if (event.target.dataset.delete === '') {
-        calculator.delete()
+        calculator.executeCommandWithOneOperand(new DeleteCommand())
     }
     if (event.target.dataset.clearAll === '') {
         calculator.clearAll()
@@ -34,7 +36,7 @@ calculatorElement.addEventListener('click', (event) => {
         calculator.chooseMemoryOperation(event.target.innerText)
     }
     if (event.target.dataset.changeSign === '') {
-        calculator.changeOperandSign()
+        calculator.executeCommandWithOneOperand(new ChangeOperandSignCommand())
     }
     calculator.displayData()
 })

@@ -5,22 +5,56 @@ export class Calculator {
         this.memoryElement = memoryElement
         this.clearAll()
     }
-    executeCommand(command) {
+
+    executeCommandWithOneOperand(command) {
         this.currentOperand = command.execute(this.currentOperand)
     }
 
-    chooseOperation(operation, isSingleOperation) {
+    chooseOperation(operation) {
         if (this.currentOperand === '') return
-        if (!isSingleOperation) {
-            if (this.previousOperand !== '') {
-                this.calculateOperations()
-            }
-            //add current operand to second display's block
-            this.previousOperand = this.currentOperand
-            this.currentOperand = ''
+
+        if (this.previousOperand !== '') {
+            this.calculateOperations()
         }
+        //add current operand to second display's block
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
         this.operation = operation
-        this.isSingleOperation = isSingleOperation
+    }
+
+    calculateOperations() {
+        let result = this.currentOperand
+        const previousBlock = parseFloat(this.previousOperand)
+        const currentBlock = parseFloat(this.currentOperand)
+        if (isNaN(previousBlock) || isNaN(currentBlock)) return
+        switch (this.operation) {
+            case '+':
+                result = previousBlock + currentBlock
+                break
+            case '-':
+                result = previousBlock - currentBlock
+                break
+            case '*':
+                result = previousBlock * currentBlock
+                break
+            case '÷':
+                result = previousBlock / currentBlock
+                break
+            case '%':
+                result = previousBlock % currentBlock
+                break
+            case 'xʸ':
+                result = Math.pow(previousBlock, currentBlock)
+                break
+            case 'ʸ√x':
+                result = Math.pow(currentBlock, 1 / previousBlock)
+                break
+            default:
+                return
+        }
+        this.previousOperand = ''
+        this.currentOperand = result
+        this.operation = undefined
     }
 
     chooseMemoryOperation(memoryOperation) {
@@ -33,71 +67,6 @@ export class Calculator {
         }
 
         this.memoryOperation = memoryOperation
-    }
-
-    calculateOperations() {
-        let result = this.currentOperand
-        const previousBlock = parseFloat(this.previousOperand)
-        const currentBlock = parseFloat(this.currentOperand)
-        if (!this.isSingleOperation) {
-            if (isNaN(previousBlock) || isNaN(currentBlock)) return
-            switch (this.operation) {
-                case '+':
-                    result = previousBlock + currentBlock
-                    break
-                case '-':
-                    result = previousBlock - currentBlock
-                    break
-                case '*':
-                    result = previousBlock * currentBlock
-                    break
-                case '÷':
-                    result = previousBlock / currentBlock
-                    break
-                case '%':
-                    result = previousBlock % currentBlock
-                    break
-                case 'xʸ':
-                    result = Math.pow(previousBlock, currentBlock)
-                    break
-                case 'ʸ√x':
-                    result = Math.pow(currentBlock, 1 / previousBlock)
-                    break
-                default:
-                    return
-            }
-            this.previousOperand = ''
-        }
-        if (this.isSingleOperation && this.operation) {
-            if (isNaN(currentBlock)) return
-            switch (this.operation) {
-                case 'x²':
-                    result = currentBlock ** 2
-                    break
-                case 'x³':
-                    result = currentBlock ** 3
-                    break
-                case '1/x':
-                    result = 1 / currentBlock
-                    break
-                case '√x':
-                    result = Math.sqrt(currentBlock)
-                    break
-                case '∛x':
-                    result = Math.cbrt(currentBlock)
-                    break
-                case 'log':
-                    result = Math.log(currentBlock)
-                    break
-                case 'log10':
-                    result = Math.log10(currentBlock)
-                    break
-                default:
-                    break
-            }
-        }
-        this.currentOperand = result
-        this.operation = undefined
     }
 
     memoryOperations() {
@@ -129,24 +98,11 @@ export class Calculator {
         this.memoryOperation = undefined
     }
 
-    changeOperandSign() {
-        this.currentOperand = this.currentOperand.toString();
-        if (this.currentOperand.includes('-')) {
-            this.currentOperand = this.currentOperand.slice(1);
-        } else {
-            this.currentOperand = '-' + this.currentOperand;
-        }
-    }
-
     clearAll() {
         this.currentOperand = ''
         this.previousOperand = ''
         this.memory = ''
         this.operation = undefined
-    }
-
-    delete() {
-        this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
     displayData() {
@@ -163,3 +119,5 @@ export class Calculator {
         }
     }
 }
+
+
