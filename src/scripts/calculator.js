@@ -3,11 +3,16 @@ export class Calculator {
         this.previousOperationElement = previousOperationElement
         this.currentOperandTextElement = currentOperandTextElement
         this.memoryElement = memoryElement
+        this.memory = ''
         this.clearAll()
     }
 
-    executeCommandWithOneOperand(command) {
+    executeCommandWithCurrentOperand(command) {
         this.currentOperand = command.execute(this.currentOperand)
+    }
+
+    executeCommandWithMemory(command) {
+        this.memory = command.execute(this.memory, this.currentOperand)
     }
 
     chooseOperation(operation) {
@@ -57,47 +62,6 @@ export class Calculator {
         this.operation = undefined
     }
 
-    chooseMemoryOperation(memoryOperation) {
-        if (this.currentOperand === '') return
-        if (this.memory !== '' || memoryOperation === 'MC' || memoryOperation === 'MR') {
-            this.memoryOperation = memoryOperation
-            this.memoryOperations()
-        } else {
-            this.memory = this.currentOperand
-        }
-
-        this.memoryOperation = memoryOperation
-    }
-
-    memoryOperations() {
-        let memoryResult = this.memory
-        let memoryBlock = parseFloat(this.memory)
-        const currentBlock = parseFloat(this.currentOperand)
-        if (isNaN(currentBlock)) return
-        switch (this.memoryOperation) {
-            case 'M+':
-                memoryResult = memoryBlock + currentBlock
-                break
-            case 'M-':
-                memoryResult = memoryBlock - currentBlock
-                break
-            case 'MR':
-                if (this.memory === '' || isNaN(this.memory)) {
-                    memoryResult = ''
-                } else {
-                    this.currentOperand = memoryResult
-                }
-                break
-            case 'MC':
-                memoryResult = ''
-                break
-            default:
-                return
-        }
-        this.memory = memoryResult
-        this.memoryOperation = undefined
-    }
-
     clearAll() {
         this.currentOperand = ''
         this.previousOperand = ''
@@ -112,12 +76,13 @@ export class Calculator {
         } else {
             this.previousOperationElement.innerText = ''
         }
-        if (this.memoryOperation) {
-            this.memoryElement.innerText = this.memory
-        } else {
-            this.memoryElement.innerText = ''
-        }
+        this.memoryElement.innerText = this.memory
     }
+
+    // displayCurrentOperand(currentOperand) {
+    //     this.currentOperandTextElement.innerText = currentOperand
+    // }
 }
+
 
 
