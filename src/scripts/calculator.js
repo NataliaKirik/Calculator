@@ -5,16 +5,8 @@ export class Calculator {
         this.memoryElement = memoryElement
         this.clearAll()
     }
-
-    appendNumber(number) {
-        if (number === '.' && this.currentOperand.includes('.')) return
-        this.currentOperand = this.currentOperand + number
-        if (this.currentOperand.startsWith('0') &&
-            this.currentOperand.length > 1 &&
-            !this.currentOperand.includes('.')
-        ) {
-            this.currentOperand = this.currentOperand.slice(1)
-        }
+    executeCommand(command) {
+        this.currentOperand = command.execute(this.currentOperand)
     }
 
     chooseOperation(operation, isSingleOperation) {

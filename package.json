@@ -6,7 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "repository": {
         "type": "git",
@@ -23,7 +25,7 @@
     "bugs": {
         "url": "https://github.com/NataliaKirik/Calculator/issues"
     },
-    "homepage": "https://github.com/NataliaKirik/Calculator#readme",
+    "homepage": "https://NataliaKirik.github.io/Calculator",
     "devDependencies": {
         "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.5.1",
@@ -37,5 +39,8 @@
         "url-loader": "^4.1.1",
         "webpack": "^5.62.1",
         "webpack-cli": "^4.9.1"
+    },
+    "dependencies": {
+        "gh-pages": "^3.2.3"
     }
 }
