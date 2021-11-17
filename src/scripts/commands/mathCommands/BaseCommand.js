@@ -1,6 +1,6 @@
 export class BaseCommand {
 
     execute() {
-        return 'method is not implemended'
+        return 'method does not implemented'
     }
 }

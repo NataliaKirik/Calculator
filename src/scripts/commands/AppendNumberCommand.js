@@ -4,9 +4,7 @@ export class AppendNumberCommand {
     }
 
     execute(currentOperand) {
-        if (this.valueToAppend === '.' && currentOperand.includes('.')) {
-            throw Error('\'.\' already exists ')
-        }
+        if (this.valueToAppend === '.' && currentOperand.includes('.')) return
         if (currentOperand.startsWith('0') &&
             currentOperand.length >= 1 &&
             !this.valueToAppend.includes('.') &&

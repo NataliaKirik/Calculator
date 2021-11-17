@@ -43,6 +43,7 @@ export class Calculator {
         const previousBlock = Number(this.previousOperand)
         const currentBlock = Number(this.currentOperand)
         if (isNaN(previousBlock) || isNaN(currentBlock)) return
+        if (this.currentOperand === '') return
         switch (this.operation) {
             case '+':
                 result = new SumCommand(previousBlock, currentBlock).execute()
@@ -68,6 +69,7 @@ export class Calculator {
             default:
                 break
         }
+        if (currentBlock > 99999999 || previousBlock > 99999999) result = 'Error: calculator can work with numbers smaller then 99 999 999'
         this.previousOperand = ''
         this.currentOperand = result
         this.operation = undefined
