@@ -1,4 +1,4 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class CubeRootCommand extends BaseCommand {
     constructor(currentOperand) {
@@ -7,6 +7,6 @@ export class CubeRootCommand extends BaseCommand {
     }
 
     execute() {
-        return Math.cbrt(  this.currentOperand)
+        return this.currentOperand ** (1 / 3)
     }
 }

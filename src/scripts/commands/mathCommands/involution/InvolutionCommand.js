@@ -1,6 +1,6 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
-export class MultiplyCommand extends BaseCommand {
+export class InvolutionCommand extends BaseCommand {
     constructor(currentOperand, previousOperand) {
         super();
         this.currentOperand = currentOperand;
@@ -8,6 +8,6 @@ export class MultiplyCommand extends BaseCommand {
     }
 
     execute() {
-        return this.currentOperand * this.previousOperand
+        return this.currentOperand ** this.previousOperand
     }
 }

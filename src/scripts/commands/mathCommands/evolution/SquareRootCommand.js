@@ -1,4 +1,4 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class SquareRootCommand extends BaseCommand {
     constructor(currentOperand) {
@@ -7,6 +7,6 @@ export class SquareRootCommand extends BaseCommand {
     }
 
     execute() {
-        return Math.sqrt(  this.currentOperand)
+        return this.currentOperand ** (1 / 2)
     }
 }

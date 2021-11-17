@@ -1,4 +1,4 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class OneDivideIntoCurrentOperandCommand extends BaseCommand {
     constructor(currentOperand) {

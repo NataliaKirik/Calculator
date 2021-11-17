@@ -1,10 +1,10 @@
-import {SumCommand} from "./commands/mathCommands/SumCommand";
-import {SubtractCommand} from "./commands/mathCommands/SubtractCommand";
-import {MultiplyCommand} from "./commands/mathCommands/MultiplyCommand";
-import {DivisionCommand} from "./commands/mathCommands/DivisionCommand";
-import {PercentCommand} from "./commands/mathCommands/PercentCommand";
-import {InvolutionCommand} from "./commands/mathCommands/InvolutionCommand";
-import {EvolutionCommand} from "./commands/mathCommands/EvolutionCommand";
+import {SumCommand} from "./commands/mathCommands/sum/SumCommand";
+import {SubtractCommand} from "./commands/mathCommands/subtract/SubtractCommand";
+import {MultiplyCommand} from "./commands/mathCommands/multiply/MultiplyCommand";
+import {DivisionCommand} from "./commands/mathCommands/division/DivisionCommand";
+import {PercentCommand} from "./commands/percent/PercentCommand";
+import {InvolutionCommand} from "./commands/mathCommands/involution/InvolutionCommand";
+import {EvolutionCommand} from "./commands/mathCommands/evolution/EvolutionCommand";
 
 export class Calculator {
     constructor(previousOperationElement, currentOperandTextElement, memoryElement) {

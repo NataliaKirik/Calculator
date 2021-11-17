@@ -1,4 +1,4 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class LogCommand extends BaseCommand {
     constructor(currentOperand) {
@@ -8,7 +8,7 @@ export class LogCommand extends BaseCommand {
 
     execute() {
         if (this.currentOperand < 0) return 'Error: enter positive number'
-        if (this.currentOperand === 0) return 'Error: log(0) is not defined'
+        if (this.currentOperand === 0) return 'Error: decimal log(0) is not defined'
         return Math.log(this.currentOperand)
     }
 }

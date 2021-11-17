@@ -1,10 +1,10 @@
-import {SquareCommand} from "./mathCommands/SquareCommand";
-import {CubeCommand} from "./mathCommands/CubeCommand";
-import {OneDivideIntoCurrentOperandCommand} from "./mathCommands/OneDivideIntoCurrentOperandCommand";
-import {SquareRootCommand} from "./mathCommands/SquareRootCommand";
-import {CubeRootCommand} from "./mathCommands/CubeRootCommand";
-import {LogCommand} from "./mathCommands/LogCommand";
-import {DecimalLogCommand} from "./mathCommands/DecimalLogCommand";
+import {SquareCommand} from "./mathCommands/involution/SquareCommand";
+import {CubeCommand} from "./mathCommands/involution/CubeCommand";
+import {OneDivideIntoCurrentOperandCommand} from "./mathCommands/division/OneDivideIntoCurrentOperandCommand";
+import {SquareRootCommand} from "./mathCommands/evolution/SquareRootCommand";
+import {CubeRootCommand} from "./mathCommands/evolution/CubeRootCommand";
+import {DecimalLogCommand} from "./mathCommands/log/DecimalLogCommand";
+import {LogCommand} from "./mathCommands/log/LogCommand";
 
 export class OneOperandOperationsCommand {
     constructor(operation) {

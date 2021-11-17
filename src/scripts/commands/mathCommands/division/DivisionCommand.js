@@ -1,4 +1,4 @@
-import {BaseCommand} from './BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class DivisionCommand extends BaseCommand {
     constructor(currentOperand, previousOperand) {
