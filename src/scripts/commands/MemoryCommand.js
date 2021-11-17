@@ -3,7 +3,7 @@ export class MemoryCommand {
         this.operation = operation
     }
 
-    execute(memory, currentOperand) {
+    execute(currentOperand, memory) {
         switch (this.operation) {
             case 'M+':
                 return Number(memory) + Number(currentOperand)

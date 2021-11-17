@@ -1,4 +1,4 @@
-export class CalculateOperations {
+export class OneOperandOperationsCommand {
     constructor(operation) {
         this.operation = operation
     }
@@ -8,7 +8,7 @@ export class CalculateOperations {
             throw Error('enter value')
         }
         let result = currentOperand
-        const currentBlock = parseFloat(currentOperand)
+        const currentBlock = Number(currentOperand)
         if (isNaN(currentOperand)) return
         switch (this.operation) {
             case 'x²':
@@ -37,4 +37,5 @@ export class CalculateOperations {
         }
         return result
     }
+
 }

@@ -3,16 +3,19 @@ export class Calculator {
         this.previousOperationElement = previousOperationElement
         this.currentOperandTextElement = currentOperandTextElement
         this.memoryElement = memoryElement
+
+        this.operation = ''
+        this.previousOperand = ''
         this.memory = ''
         this.clearAll()
     }
 
     executeCommandWithCurrentOperand(command) {
-        this.currentOperand = command.execute(this.currentOperand)
+        this.currentOperand = command.execute(this.currentOperand, this.memory)
     }
 
     executeCommandWithMemory(command) {
-        this.memory = command.execute(this.memory, this.currentOperand)
+        this.memory = command.execute(this.currentOperand, this.memory)
     }
 
     chooseOperation(operation) {
@@ -66,23 +69,62 @@ export class Calculator {
         this.currentOperand = ''
         this.previousOperand = ''
         this.memory = ''
-        this.operation = undefined
+        this.operation = ''
     }
 
-    displayData() {
-        this.currentOperandTextElement.innerText = this.currentOperand
+    displayPreviousOperand() {
+        this.previousOperationElement.innerText = `${this.previousOperand} ${this.operation}`
+
         if (this.operation) {
             this.previousOperationElement.innerText = `${this.previousOperand} ${this.operation}`
         } else {
             this.previousOperationElement.innerText = ''
         }
+    }
+
+    displayCurrentOperand() {
+        this.currentOperandTextElement.innerText = this.currentOperand
+    }
+
+    displayMemory() {
         this.memoryElement.innerText = this.memory
     }
 
-    // displayCurrentOperand(currentOperand) {
-    //     this.currentOperandTextElement.innerText = currentOperand
+    // executeCommandWithPreviousOperand(command, operation) {
+    //     this.operation = operation
+    //     this.previousOperand = command.execute(this.currentOperand, this.previousOperand)
+    //     this.currentOperand = ''
     // }
+
 }
 
 
-
+// export class TwoOperandOperationsCommand {
+//     constructor(operation) {
+//         this.operation = operation
+//     }
+//
+//     execute(currentOperand, previousOperand) {
+//         if (currentOperand === '') {
+//             throw Error('enter value')
+//         }
+//         switch (this.operation) {
+//             case '+':
+//                 return Number(previousOperand) + Number(currentOperand)
+//             case '-':
+//                 return previousOperand - currentOperand
+//             case '*':
+//                 return previousOperand * currentOperand
+//             case '÷':
+//                 return previousOperand / currentOperand
+//             case '%':
+//                 return previousOperand % currentOperand
+//             case 'xʸ':
+//                 return Math.pow(previousOperand, currentOperand)
+//             case 'ʸ√x':
+//                 return Math.pow(currentOperand, 1 / previousOperand)
+//             default:
+//                 return ''
+//         }
+//     }
+// }

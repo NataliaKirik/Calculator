@@ -1,7 +1,7 @@
 import '../styles/style.css'
 import {Calculator} from "./calculator";
 import {AppendNumberCommand} from "./commands/AppendNumberCommand";
-import {CalculateOperations} from "./commands/CalculateOperationsCommand";
+import {OneOperandOperationsCommand} from "./commands/OneOperandOperationsCommand";
 import {DeleteCommand} from "./commands/DeleteCommand";
 import {ChangeOperandSignCommand} from "./commands/ChangeOperandSignCommand";
 import {MemoryCommand} from "./commands/MemoryCommand";
@@ -20,7 +20,7 @@ calculatorElement.addEventListener('click', (event) => {
     }
 
     if (event.target.dataset.operation === '') {
-        calculator.executeCommandWithCurrentOperand(new CalculateOperations(event.target.innerText))
+        calculator.executeCommandWithCurrentOperand(new OneOperandOperationsCommand(event.target.innerText))
     }
 
     if (event.target.dataset.delete === '') {
@@ -28,6 +28,9 @@ calculatorElement.addEventListener('click', (event) => {
     }
 
     if (event.target.dataset.memoryOperation === '') {
+        if (event.target.innerText === 'MR') {
+            calculator.executeCommandWithCurrentOperand(new MemoryCommand(event.target.innerText))
+        }
         calculator.executeCommandWithMemory(new MemoryCommand(event.target.innerText))
     }
     if (event.target.dataset.changeSign === '') {
@@ -44,6 +47,8 @@ calculatorElement.addEventListener('click', (event) => {
         calculator.clearAll()
     }
 
-    calculator.displayData()
+    calculator.displayPreviousOperand()
+    calculator.displayCurrentOperand()
+    calculator.displayMemory()
 })
 
