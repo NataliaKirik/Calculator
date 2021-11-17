@@ -2,7 +2,7 @@ import {SumCommand} from "./commands/mathCommands/sum/SumCommand";
 import {SubtractCommand} from "./commands/mathCommands/subtract/SubtractCommand";
 import {MultiplyCommand} from "./commands/mathCommands/multiply/MultiplyCommand";
 import {DivisionCommand} from "./commands/mathCommands/division/DivisionCommand";
-import {PercentCommand} from "./commands/percent/PercentCommand";
+import {PercentCommand} from "./commands/mathCommands/percent/PercentCommand";
 import {InvolutionCommand} from "./commands/mathCommands/involution/InvolutionCommand";
 import {EvolutionCommand} from "./commands/mathCommands/evolution/EvolutionCommand";
 

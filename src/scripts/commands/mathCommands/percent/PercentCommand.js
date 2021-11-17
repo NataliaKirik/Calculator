@@ -1,4 +1,4 @@
-import {BaseCommand} from '../mathCommands/BaseCommand'
+import {BaseCommand} from '../BaseCommand'
 
 export class PercentCommand extends BaseCommand {
     constructor(currentOperand, previousOperand) {
