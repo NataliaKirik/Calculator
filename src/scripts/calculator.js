@@ -1,3 +1,11 @@
+import {SumCommand} from "./commands/mathCommands/SumCommand";
+import {SubtractCommand} from "./commands/mathCommands/SubtractCommand";
+import {MultiplyCommand} from "./commands/mathCommands/MultiplyCommand";
+import {DivisionCommand} from "./commands/mathCommands/DivisionCommand";
+import {PercentCommand} from "./commands/mathCommands/PercentCommand";
+import {InvolutionCommand} from "./commands/mathCommands/InvolutionCommand";
+import {EvolutionCommand} from "./commands/mathCommands/EvolutionCommand";
+
 export class Calculator {
     constructor(previousOperationElement, currentOperandTextElement, memoryElement) {
         this.previousOperationElement = previousOperationElement
@@ -32,33 +40,33 @@ export class Calculator {
 
     calculateOperations() {
         let result = this.currentOperand
-        const previousBlock = parseFloat(this.previousOperand)
-        const currentBlock = parseFloat(this.currentOperand)
+        const previousBlock = Number(this.previousOperand)
+        const currentBlock = Number(this.currentOperand)
         if (isNaN(previousBlock) || isNaN(currentBlock)) return
         switch (this.operation) {
             case '+':
-                result = previousBlock + currentBlock
+                result = new SumCommand(previousBlock, currentBlock).execute()
                 break
             case '-':
-                result = previousBlock - currentBlock
+                result = new SubtractCommand(previousBlock, currentBlock).execute()
                 break
             case '*':
-                result = previousBlock * currentBlock
+                result = new MultiplyCommand(previousBlock, currentBlock).execute()
                 break
             case '÷':
-                result = previousBlock / currentBlock
+                result = new DivisionCommand(previousBlock, currentBlock).execute()
                 break
             case '%':
-                result = previousBlock % currentBlock
+                result = new PercentCommand(previousBlock, currentBlock).execute()
                 break
             case 'xʸ':
-                result = Math.pow(previousBlock, currentBlock)
+                result = new InvolutionCommand(previousBlock, currentBlock).execute()
                 break
             case 'ʸ√x':
-                result = Math.pow(currentBlock, 1 / previousBlock)
+                result = new EvolutionCommand(previousBlock, currentBlock).execute()
                 break
             default:
-                return
+                break
         }
         this.previousOperand = ''
         this.currentOperand = result
@@ -89,42 +97,5 @@ export class Calculator {
     displayMemory() {
         this.memoryElement.innerText = this.memory
     }
-
-    // executeCommandWithPreviousOperand(command, operation) {
-    //     this.operation = operation
-    //     this.previousOperand = command.execute(this.currentOperand, this.previousOperand)
-    //     this.currentOperand = ''
-    // }
-
 }
 
-
-// export class TwoOperandOperationsCommand {
-//     constructor(operation) {
-//         this.operation = operation
-//     }
-//
-//     execute(currentOperand, previousOperand) {
-//         if (currentOperand === '') {
-//             throw Error('enter value')
-//         }
-//         switch (this.operation) {
-//             case '+':
-//                 return Number(previousOperand) + Number(currentOperand)
-//             case '-':
-//                 return previousOperand - currentOperand
-//             case '*':
-//                 return previousOperand * currentOperand
-//             case '÷':
-//                 return previousOperand / currentOperand
-//             case '%':
-//                 return previousOperand % currentOperand
-//             case 'xʸ':
-//                 return Math.pow(previousOperand, currentOperand)
-//             case 'ʸ√x':
-//                 return Math.pow(currentOperand, 1 / previousOperand)
-//             default:
-//                 return ''
-//         }
-//     }
-// }
