@@ -12,7 +12,7 @@ export class OneOperandOperationsCommand {
     }
 
     execute(currentOperand) {
-        if (currentOperand === '') return 'enter value'
+        if (currentOperand === '') return 'Error: enter value'
         if (currentOperand > 99999999) return 'Error: calculator can work with numbers smaller then 99 999 999'
 
         const currentBlock = Number(currentOperand)
