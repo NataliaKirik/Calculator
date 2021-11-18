@@ -45,10 +45,30 @@
 |<span style="color:rgba(160, 131, 160, 0.56)">√x<sub/></span> | Press this button to take the square root of the entered number |
 |<span style="color:rgba(160, 131, 160, 0.56)">∛x</span> | Press this button to take the cube root of the entered number |
 |<span style="color:rgba(160, 131, 160, 0.56)">ʸ√x</span> | Press this button to take root of the entered number |
+|<span style="color:rgba(160, 131, 160, 0.56)">x!</span> | Press this button to calculate factorial of the entered number |
 |<span style="color:rgba(160, 131, 160, 0.56)">change theme</span> | Press this button to change theme |
 |<span style="color:rgba(160, 131, 160, 0.56)">1/x</span> | Press this button to divide 1 by the entered number |
 
+## 4.Folder structure
 
+```
+src
+├── assets
+│    └── fonts
+├── scripts
+│    └── commands
+│         └──  mathCommands
+│                ├── division
+│                ├── evolution
+│                ├── factorial
+│                ├── involution
+│                ├── log
+│                ├── multiply
+│                ├── percent
+│                ├── subtract
+│                └── sum
+└── styles 
+```
                                                                                                         
 
 
