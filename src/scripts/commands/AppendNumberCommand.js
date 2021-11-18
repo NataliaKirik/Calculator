@@ -4,7 +4,7 @@ export class AppendNumberCommand {
     }
 
     execute(currentOperand) {
-        if (this.valueToAppend === '.' && currentOperand.includes('.')) return
+        if (this.valueToAppend === '.' && currentOperand.includes('.')) return currentOperand
         if (currentOperand.startsWith('0') &&
             currentOperand.length >= 1 &&
             !this.valueToAppend.includes('.') &&

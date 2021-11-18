@@ -1,10 +1,8 @@
-import {SquareCommand} from "./mathCommands/involution/SquareCommand";
-import {CubeCommand} from "./mathCommands/involution/CubeCommand";
-import {OneDivideIntoCurrentOperandCommand} from "./mathCommands/division/OneDivideIntoCurrentOperandCommand";
-import {SquareRootCommand} from "./mathCommands/evolution/SquareRootCommand";
-import {CubeRootCommand} from "./mathCommands/evolution/CubeRootCommand";
 import {DecimalLogCommand} from "./mathCommands/log/DecimalLogCommand";
 import {LogCommand} from "./mathCommands/log/LogCommand";
+import {InvolutionCommand} from "./mathCommands/involution/InvolutionCommand";
+import {DivisionCommand} from "./mathCommands/division/DivisionCommand";
+import {EvolutionCommand} from "./mathCommands/evolution/EvolutionCommand";
 
 export class OneOperandOperationsCommand {
     constructor(operation) {
@@ -21,15 +19,15 @@ export class OneOperandOperationsCommand {
 
         switch (this.operation) {
             case 'x²':
-                return new SquareCommand(currentBlock).execute()
+                return new InvolutionCommand(currentBlock, 2).execute()
             case 'x³':
-                return new CubeCommand(currentBlock).execute()
+                return new InvolutionCommand(currentBlock, 3).execute()
             case '1/x':
-                return new OneDivideIntoCurrentOperandCommand(currentBlock).execute()
+                return new DivisionCommand(1, currentBlock).execute()
             case '√x':
-                return new SquareRootCommand(currentBlock).execute()
+                return new EvolutionCommand(2, currentBlock).execute()
             case '∛x':
-                return new CubeRootCommand(currentBlock).execute()
+                return new EvolutionCommand(3, currentBlock).execute()
             case 'log':
                 return new LogCommand(currentBlock).execute()
             case 'log10':
