@@ -55,7 +55,7 @@ calculatorElement.addEventListener('click', (event) => {
     calculator.displayCurrentOperand()
     calculator.displayMemory()
 
-    if (currentOperandTextElement.innerHTML.startsWith('Error')) {
+    if (currentOperandTextElement.innerHTML.startsWith('Error') || currentOperandTextElement.innerHTML === 'Infinity') {
         calculatorButtonsElements.forEach((button) => {
             button.setAttribute("disabled", "disabled")
         })
