@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require("path");
 const HTMLPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin');
