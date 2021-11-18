@@ -23,25 +23,24 @@ module.exports = {
         new MiniCssExtractPlugin()
     ],
     module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: [
-                    {
-                        loader: 'style-loader',
+        rules: [{
+            test: /\.css$/i,
+            use: [
+                {
+                    loader: 'style-loader',
+                },
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true,
                     },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },
+                },
+            ],
+        },
             {
                 test: /\.ttf(\?\S*)?$/,
                 use: 'url-loader',
             },
-        ]
+        ],
     }
 }
