@@ -1,7 +1,7 @@
 import '../styles/style.css'
 import {Calculator} from "./calculator";
 import {AppendNumberCommand} from "./commands/AppendNumberCommand";
-import {OneOperandOperationsCommand} from "./commands/OneOperandOperationsCommand";
+import {CurrentOperandCommand} from "./commands/CurrentOperandCommand";
 import {DeleteCommand} from "./commands/DeleteCommand";
 import {ChangeOperandSignCommand} from "./commands/ChangeOperandSignCommand";
 import {MemoryCommand} from "./commands/MemoryCommand";
@@ -21,7 +21,7 @@ calculatorElement.addEventListener('click', (event) => {
     }
 
     if (event.target.dataset.operation === '') {
-        calculator.executeCommandWithCurrentOperand(new OneOperandOperationsCommand(event.target.innerText))
+        calculator.executeCommandWithCurrentOperand(new CurrentOperandCommand(event.target.innerText))
     }
 
     if (event.target.dataset.delete === '') {

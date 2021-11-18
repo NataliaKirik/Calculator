@@ -3,9 +3,3 @@ export class DeleteCommand {
         return currentOperand.toString().slice(0, -1)
     }
 }
-
-export class ClearCurrentOperand {
-    execute() {
-        return ''
-    }
-}

@@ -3,8 +3,9 @@ import {LogCommand} from "./mathCommands/log/LogCommand";
 import {InvolutionCommand} from "./mathCommands/involution/InvolutionCommand";
 import {DivisionCommand} from "./mathCommands/division/DivisionCommand";
 import {EvolutionCommand} from "./mathCommands/evolution/EvolutionCommand";
+import {FactorialCommand} from "./mathCommands/factorial/FactorialCommand";
 
-export class OneOperandOperationsCommand {
+export class CurrentOperandCommand {
     constructor(operation) {
         this.operation = operation
     }
@@ -28,6 +29,8 @@ export class OneOperandOperationsCommand {
                 return new EvolutionCommand(2, currentBlock).execute()
             case '∛x':
                 return new EvolutionCommand(3, currentBlock).execute()
+            case 'x!':
+                return new FactorialCommand(currentBlock).execute()
             case 'log':
                 return new LogCommand(currentBlock).execute()
             case 'log10':

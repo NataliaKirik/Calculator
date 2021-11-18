@@ -44,7 +44,7 @@ body {
 }
 
 .memory {
-    color:#c2bfbf;
+    color: #c2bfbf;
     font-size: 22px;
 }
 
@@ -69,6 +69,7 @@ button {
 
 button:hover {
     background-color: plum;
+    cursor: pointer;
 }
 
 button:active {
@@ -82,4 +83,8 @@ button:active {
 
 .number {
     background-color: rgba(235, 225, 239, 0.74);
+}
+
+.themeButton {
+    font-size: 1.8rem;
 }
