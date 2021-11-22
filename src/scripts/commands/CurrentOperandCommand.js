@@ -18,26 +18,35 @@ export class CurrentOperandCommand {
 
         if (isNaN(currentOperand)) return
 
+        let command
         switch (this.operation) {
             case 'x²':
-                return new InvolutionCommand(currentBlock, 2).execute()
+                command = new InvolutionCommand(currentBlock, 2)
+                break
             case 'x³':
-                return new InvolutionCommand(currentBlock, 3).execute()
+                command = new InvolutionCommand(currentBlock, 3)
+                break
             case '1/x':
-                return new DivisionCommand(1, currentBlock).execute()
+                command = new DivisionCommand(1, currentBlock)
+                break
             case '√x':
-                return new EvolutionCommand(2, currentBlock).execute()
+                command = new EvolutionCommand(2, currentBlock)
+                break
             case '∛x':
-                return new EvolutionCommand(3, currentBlock).execute()
+                command = new EvolutionCommand(3, currentBlock)
+                break
             case 'x!':
-                return new FactorialCommand(currentBlock).execute()
+                command = new FactorialCommand(currentBlock)
+                break
             case 'log':
-                return new LogCommand(currentBlock).execute()
+                command = new LogCommand(currentBlock)
+                break
             case 'log10':
-                return new DecimalLogCommand(currentBlock).execute()
+                command = new DecimalLogCommand(currentBlock)
+                break
             default:
-                return
+                break
         }
+        return command.execute()
     }
-
 }
