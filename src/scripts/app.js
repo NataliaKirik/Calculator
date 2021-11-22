@@ -1,10 +1,11 @@
 import '../styles/style.css'
-import {Calculator} from "./calculator";
+import {Calculator} from "./Calculator";
 import {AppendNumberCommand} from "./commands/AppendNumberCommand";
 import {CurrentOperandCommand} from "./commands/CurrentOperandCommand";
 import {DeleteCommand} from "./commands/DeleteCommand";
 import {ChangeOperandSignCommand} from "./commands/ChangeOperandSignCommand";
 import {MemoryCommand} from "./commands/MemoryCommand";
+import {Display} from "./Display";
 
 const calculatorElement = document.querySelector('[data-calculator]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
@@ -13,7 +14,7 @@ const memoryElement = document.querySelector('[data-memory]')
 const calculatorButtonsElements = document.querySelectorAll('[data-button]')
 
 
-const calculator = new Calculator(previousOperationElement, currentOperandTextElement, memoryElement)
+const calculator = new Calculator(new Display(previousOperationElement, currentOperandTextElement, memoryElement))
 
 calculatorElement.addEventListener('click', (event) => {
     if (event.target.dataset.number === '') {
@@ -40,7 +41,7 @@ calculatorElement.addEventListener('click', (event) => {
     }
 
     if (event.target.dataset.twooperandOperation === '') {
-        calculator.chooseOperation(event.target.innerText)
+        calculator.chooseOperation(event.target.innerText, new CurrentOperandCommand(event.target.innerText))
     }
 
     if (event.target.dataset.equal === '') {
@@ -51,9 +52,7 @@ calculatorElement.addEventListener('click', (event) => {
         calculator.clearAll()
     }
 
-    calculator.displayPreviousOperand()
-    calculator.displayCurrentOperand()
-    calculator.displayMemory()
+    calculator.display()
 
     if (currentOperandTextElement.innerHTML.startsWith('Error') || currentOperandTextElement.innerHTML === 'Infinity') {
         calculatorButtonsElements.forEach((button) => {

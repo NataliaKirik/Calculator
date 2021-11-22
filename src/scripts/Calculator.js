@@ -7,11 +7,8 @@ import {InvolutionCommand} from "./commands/mathCommands/involution/InvolutionCo
 import {EvolutionCommand} from "./commands/mathCommands/evolution/EvolutionCommand";
 
 export class Calculator {
-    constructor(previousOperationElement, currentOperandTextElement, memoryElement) {
-        this.previousOperationElement = previousOperationElement
-        this.currentOperandTextElement = currentOperandTextElement
-        this.memoryElement = memoryElement
-
+    constructor(displayEntity) {
+        this.displayEntity = displayEntity
         this.operation = ''
         this.previousOperand = ''
         this.memory = ''
@@ -82,22 +79,7 @@ export class Calculator {
         this.operation = ''
     }
 
-    displayPreviousOperand() {
-        this.previousOperationElement.innerText = `${this.previousOperand} ${this.operation}`
-
-        if (this.operation) {
-            this.previousOperationElement.innerText = `${this.previousOperand} ${this.operation}`
-        } else {
-            this.previousOperationElement.innerText = ''
-        }
-    }
-
-    displayCurrentOperand() {
-        this.currentOperandTextElement.innerText = this.currentOperand
-    }
-
-    displayMemory() {
-        this.memoryElement.innerText = this.memory
+    display() {
+        this.displayEntity.showData(this.previousOperand, this.operation, this.currentOperand, this.memory)
     }
 }
-
