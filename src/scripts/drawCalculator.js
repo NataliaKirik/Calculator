@@ -57,13 +57,24 @@ export class CalculatorDrawer {
             this.previousOperandDisplay.innerText = ''
         }
 
-        // errorHandler
-        // if (this.currentOperandDisplay.innerHTML.startsWith('Error') || this.currentOperandDisplay.innerHTML === 'Infinity') {
-        //     buttonsList.forEach((button) => {
-        //         button.setAttribute("disabled", "true")
-        //
-        //     })
-        // } else {}
-
+        //errorHandler
+        if (this.currentOperandDisplay.innerHTML.startsWith('Error') || this.previousOperandDisplay.innerHTML.startsWith('Error') || this.currentOperandDisplay.innerHTML === 'Infinity') {
+            buttonsList.forEach((button) => {
+                const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
+                buttonElementsList.forEach((buttonElement) => {
+                    buttonElement.setAttribute("disabled", "disabled")
+                    if (buttonElement.dataset.value === 'clear-all') {
+                        buttonElement.removeAttribute("disabled")
+                    }
+                })
+            })
+        } else {
+            buttonsList.forEach((button) => {
+                const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
+                buttonElementsList.forEach((buttonElement) => {
+                    buttonElement.removeAttribute("disabled")
+                })
+            })
+        }
     }
 }
