@@ -38,7 +38,7 @@ export class CurrentOperandCommand {
             case 'x!':
                 command = new FactorialCommand(currentBlock)
                 break
-            case 'log':
+            case 'ln':
                 command = new LogCommand(currentBlock)
                 break
             case 'log10':

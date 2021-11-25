@@ -7,8 +7,7 @@ import {InvolutionCommand} from "./commands/mathCommands/involution/InvolutionCo
 import {EvolutionCommand} from "./commands/mathCommands/evolution/EvolutionCommand";
 
 export class Calculator {
-    constructor(displayEntity) {
-        this.displayEntity = displayEntity
+    constructor() {
         this.operation = ''
         this.previousOperand = ''
         this.memory = ''
@@ -80,7 +79,13 @@ export class Calculator {
         this.operation = ''
     }
 
-    display() {
-        this.displayEntity.showData(this.previousOperand, this.operation, this.currentOperand, this.memory)
+    returnCalculateData() {
+        return {
+            previousOperand: this.previousOperand,
+            operation: this.operation,
+            currentOperand: this.currentOperand,
+            memory: this.memory
+        }
     }
 }
+
