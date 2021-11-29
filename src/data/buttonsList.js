@@ -152,7 +152,7 @@ export const buttonsList = [
     //4 row
     {
         title: 'change theme',
-        data: '',
+        data: 'change-theme',
         class: 'two-columns themeButton',
     },
     {
