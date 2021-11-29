@@ -59,22 +59,31 @@ export class CalculatorDrawer {
 
         //errorHandler
         if (this.currentOperandDisplay.innerHTML.startsWith('Error') || this.previousOperandDisplay.innerHTML.startsWith('Error') || this.currentOperandDisplay.innerHTML === 'Infinity') {
-            buttonsList.forEach((button) => {
-                const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
-                buttonElementsList.forEach((buttonElement) => {
-                    buttonElement.setAttribute("disabled", "disabled")
-                    if (buttonElement.dataset.value === 'clear-all') {
-                        buttonElement.removeAttribute("disabled")
-                    }
-                })
-            })
+            this.lockButtons()
         } else {
-            buttonsList.forEach((button) => {
-                const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
-                buttonElementsList.forEach((buttonElement) => {
-                    buttonElement.removeAttribute("disabled")
-                })
-            })
+            this.unlockButtons()
         }
     }
+
+    lockButtons() {
+        buttonsList.forEach((button) => {
+            const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
+            buttonElementsList.forEach((buttonElement) => {
+                buttonElement.setAttribute("disabled", "disabled")
+                if (buttonElement.dataset.value === 'clear-all') {
+                    buttonElement.removeAttribute("disabled")
+                }
+            })
+        })
+    }
+
+    unlockButtons() {
+        buttonsList.forEach((button) => {
+            const buttonElementsList = document.body.querySelectorAll(`[data-value=${button.data}]`)
+            buttonElementsList.forEach((buttonElement) => {
+                buttonElement.removeAttribute("disabled")
+            })
+        })
+    }
+
 }
